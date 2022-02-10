@@ -212,34 +212,34 @@ func Test_AuthMethodsTokenEndpoint(t *testing.T) {
 		want []oidc.AuthMethod
 	}{
 		{
-			"none and basic",
+			"basic",
 			args{func() op.Configuration {
 				m := mock.NewMockConfiguration(gomock.NewController(t))
 				m.EXPECT().AuthMethodPostSupported().Return(false)
 				m.EXPECT().AuthMethodPrivateKeyJWTSupported().Return(false)
 				return m
 			}()},
-			[]oidc.AuthMethod{oidc.AuthMethodNone, oidc.AuthMethodBasic},
+			[]oidc.AuthMethod{oidc.AuthMethodBasic},
 		},
 		{
-			"none, basic and post",
+			"basic and post",
 			args{func() op.Configuration {
 				m := mock.NewMockConfiguration(gomock.NewController(t))
 				m.EXPECT().AuthMethodPostSupported().Return(true)
 				m.EXPECT().AuthMethodPrivateKeyJWTSupported().Return(false)
 				return m
 			}()},
-			[]oidc.AuthMethod{oidc.AuthMethodNone, oidc.AuthMethodBasic, oidc.AuthMethodPost},
+			[]oidc.AuthMethod{oidc.AuthMethodBasic, oidc.AuthMethodPost},
 		},
 		{
-			"none, basic, post and private_key_jwt",
+			"basic, post and private_key_jwt",
 			args{func() op.Configuration {
 				m := mock.NewMockConfiguration(gomock.NewController(t))
 				m.EXPECT().AuthMethodPostSupported().Return(true)
 				m.EXPECT().AuthMethodPrivateKeyJWTSupported().Return(true)
 				return m
 			}()},
-			[]oidc.AuthMethod{oidc.AuthMethodNone, oidc.AuthMethodBasic, oidc.AuthMethodPost, oidc.AuthMethodPrivateKeyJWT},
+			[]oidc.AuthMethod{oidc.AuthMethodBasic, oidc.AuthMethodPost, oidc.AuthMethodPrivateKeyJWT},
 		},
 	}
 	for _, tt := range tests {
