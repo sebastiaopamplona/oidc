@@ -123,7 +123,6 @@ func SubjectTypes(c Configuration) []string {
 
 func AuthMethodsTokenEndpoint(c Configuration) []oidc.AuthMethod {
 	authMethods := []oidc.AuthMethod{
-		oidc.AuthMethodNone,
 		oidc.AuthMethodBasic,
 	}
 	if c.AuthMethodPostSupported() {
